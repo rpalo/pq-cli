@@ -34,4 +34,4 @@ My goal is to develop the PQ CLI via TDD, so *in theory* the tests will be writt
     - Update command: part cost calculater to use SQLITE db of saved
 
 ## Additional Resources
-    - [The Click Documentation](http://click.pocoo.org/)
+1. [The Click Documentation](http://click.pocoo.org/)
