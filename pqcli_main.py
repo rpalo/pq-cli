@@ -5,12 +5,14 @@ import os
 
 @click.group()
 def pqcli():
+	"""A CLI helper for automating tasks at ProtoQuick"""
 	pass
 
 @pqcli.command()
 @click.option('-n', '--name')
 @click.option('-c', '--count', default=1)
 def hi(name, count):
+	"""Greets <name> or USER_NAME cheerfully <count> times."""
 	if not name:
 		name = helpers.get_config("USER_NAME")
 	for _ in range(count):
@@ -18,6 +20,7 @@ def hi(name, count):
 
 @pqcli.command()
 def spi():
+	"""Shows a SPI surface finish cheat sheet."""
 	path = os.path.join(os.path.dirname(__file__),'resources','spi.md')
 	click.launch(path)
 	click.echo("Showing SPI finish table")
@@ -25,6 +28,9 @@ def spi():
 @pqcli.command()
 @click.argument('keywords', nargs=-1)
 def open(keywords):
+	"""Takes in unlimited <keywords>, which match to the configured
+	OPEN_FILES map.  Attempts to open each of them in their native
+	application."""
 	options = helpers.get_config("OPEN_FILES")
 	successes = 0
 	for keyword in keywords:
@@ -55,6 +61,8 @@ def open(keywords):
 				help="Compute seconds/part for E2 instead of $",
 				is_flag=True)
 def cost(weight, price, markup, seconds):
+	"""Calculates part cost based on <weight>, <price> of material,
+	and <markup> percentage.  Can return seconds for E2 as well."""
 	lb_per_part = weight/454.0
 	dollar_per_part = lb_per_part * price * (markup + 100)/100.0
 	if seconds:
