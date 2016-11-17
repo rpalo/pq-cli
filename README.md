@@ -27,8 +27,6 @@ My goal is to develop the PQ CLI via TDD, so *in theory* the tests will be writt
 ## Future Plans
 * Fill in the README
 * Create Tests
-* Create command: progress
-* Create command: SPI
 * Create command: open COC
 * Update command: open COC to open a list of forms
 * Create command: part cost calculater

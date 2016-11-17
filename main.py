@@ -1,5 +1,6 @@
 import click
 from time import sleep
+import os
 
 @click.group()
 def pqcli():
@@ -13,12 +14,10 @@ def hi(name, count):
 		click.echo("Hi {}!".format(name))
 
 @pqcli.command()
-@click.option('-c','--count', default=10)
-def progress(count):
-	with click.progressbar(length=count) as bar:
-		for _ in range(count):
-			sleep(1)
-			bar.update(1)
+def spi():
+	path = os.path.join(os.path.dirname(__file__),'resources','spi.md')
+	click.launch(path)
+	click.echo("Showing SPI finish table")
 
 if __name__ == '__main__':
 	pqcli()
