@@ -25,4 +25,13 @@ def test_hi():
 	assert result.exit_code == 0
 	assert result.output == 'Hi Ryan!\nHi Ryan!\nHi Ryan!\n'
 
+def test_progress():
+	# Test case for progress command
+	runner = CliRunner()
+	result = runner.invoke(main.pqcli, ['progress', '-c', 2], catch_exceptions=False)
+	assert result.exit_code == 0
+	assert "#" in result.output
+	assert "-" in result.output
+	assert "\%" in result.output
+
 
