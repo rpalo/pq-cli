@@ -37,6 +37,34 @@ def open(keywords):
 		else:
 			click.echo("{} not in file list!".format(keyword))
 	click.echo("Successfully opened {} of {}".format(successes, len(keywords)))
+
+@pqcli.command()
+@click.option('-w', '--weight', 
+				help='Weight (in grams) per part',
+				type=float,
+				prompt="Weight (in grams) per part")
+@click.option('-p', '--price',
+				help='Material price ($/lb)',
+				type=float,
+				prompt="Material price ($/lb)")
+@click.option('-m', '--markup',
+				help="% material markup (0-100+)",
+				type=float,
+				prompt="% Material Markup (0-100+)")
+@click.option('--seconds',
+				help="Compute seconds/part for E2 instead of $",
+				is_flag=True)
+def cost(weight, price, markup, seconds):
+	lb_per_part = weight/454.0
+	dollar_per_part = lb_per_part * price * (markup + 100)/100.0
+	if seconds:
+		# Assume a material rate of $100/hour
+		hours_per_part = dollar_per_part/100.0
+		seconds_per_part = hours_per_part*3600
+		click.echo("{:0.3f}".format(seconds_per_part))
+	else:
+		click.echo("{:0.3f}".format(dollar_per_part))
+
 		
 
 

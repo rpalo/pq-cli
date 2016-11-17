@@ -58,5 +58,15 @@ def test_open():
 	assert result.exit_code == 0
 	assert result.output == "dne failed!\nSuccessfully opened 0 of 1\n"
 
+def test_cost():
+	# Test case for the part costing function
+	runner = CliRunner()
+	result = runner.invoke(pqcli_main.pqcli, ['cost', '--weight', 1, '--price', 5.00, '--markup', 10])
+	assert result.exit_code == 0
+	assert result.output == "0.012\n"
+	result = runner.invoke(pqcli_main.pqcli, ['cost', '--weight', 2, '--price', 3.50, '--markup', 15, '--seconds'])
+	assert result.exit_code == 0
+	assert result.output == "0.638\n"
+
 
 
