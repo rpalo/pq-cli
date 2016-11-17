@@ -1,0 +1,8 @@
+{
+	"USER_NAME": "TEST",
+	"OPEN_FILES": {
+		"testfile": "resources\\testfile.txt",
+		"test2": "resources\\test2.txt",
+		"dne": "resources\\nonexistent.txt"
+	}
+}

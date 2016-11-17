@@ -7,6 +7,8 @@ This is built on the [Click Framework](http://click.pocoo.org/), so see the docu
 For a comprehensive list of available commands and options, simply type `pqcli` or `pqcli --help`.
 
 * __hi__: Greets the user
+* __spi__: Displays the SPI surface finish standard for molding
+* __open__: Opens a given file (if that file is in the config file) in its application
 
 ## Adding Commands
 Currently, the way to add a command is to insert it to the bottom of the `pqcli.py` file.  Commands should follow the following format:
@@ -27,10 +29,9 @@ My goal is to develop the PQ CLI via TDD, so *in theory* the tests will be writt
 ## Future Plans
 * Fill in the README
 * Create Tests
-* Create command: open COC
-* Update command: open COC to open a list of forms
 * Create command: part cost calculater
 * Update command: part cost calculater to use SQLITE db of saved
+* Consider creating a command to go into a quasi-repl?
 
 ## Additional Resources
 1. [The Click Documentation](http://click.pocoo.org/)
