@@ -29,6 +29,8 @@ My goal is to develop the PQ CLI via TDD, so *in theory* the tests will be writt
 
 ## Future Plans
 * Fill in the README
+* Make it easier to update/modify/create config.
+* Improve erroring for config, so the user knows what's wrong.
 * Create Tests
 * Rearrange the module into real, bigkid folders
 * Update command: part cost calculater to use SQLITE db of saved
