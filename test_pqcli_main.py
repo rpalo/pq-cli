@@ -6,20 +6,15 @@ from click.testing import CliRunner
 import os, sys
 sys.path.insert(0, os.path.abspath('..'))
 
-import helpers, pqcli_main
+import pqcli_main
 
 # Begin Tests
-
-def test_get_config():
-	with pytest.raises(LookupError):
-		helpers.get_config("USER_NAME")
-	os.environ["PQCLI_CONFIG"] = "config_test"
-	assert helpers.get_config("USER_NAME") == "TEST"
-	assert helpers.get_config("ABSDLFKJDASKLF") == None
 
 def test_hi():
 	# Test case for hi command
 	runner = CliRunner()
+	result = runner.invoke(pqcli_main.pqcli, ['hi'])
+	assert result.exit_code == 1
 	os.environ["PQCLI_CONFIG"] = "config_test"
 	result = runner.invoke(pqcli_main.pqcli, ['hi'])
 	assert result.exit_code == 0
@@ -44,6 +39,7 @@ def test_spi():
 def test_open():
 	# Test case for the open command
 	runner = CliRunner()
+	pytest.fail("Validate get_config first!")
 	os.environ["PQCLI_CONFIG"] = "config_test"
 	result = runner.invoke(pqcli_main.pqcli, ['open', 'testfile'])
 	assert result.exit_code == 0
@@ -67,6 +63,10 @@ def test_cost():
 	result = runner.invoke(pqcli_main.pqcli, ['cost', '--weight', 2, '--price', 3.50, '--markup', 15, '--seconds'])
 	assert result.exit_code == 0
 	assert result.output == "0.638\n"
+
+def test_assist():
+	# Test case for assist function
+	pytest.fail("Assist function not implemented yet!")
 
 
 

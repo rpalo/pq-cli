@@ -1,5 +1,5 @@
 import click
-import helpers
+import util
 from time import sleep
 import os
 
@@ -14,7 +14,9 @@ def pqcli():
 def hi(name, count):
 	"""Greets <name> or USER_NAME cheerfully <count> times."""
 	if not name:
-		name = helpers.get_config("USER_NAME")
+		name = util.get_config("USER_NAME")
+	if name == None:
+		raise click.FileError("PQCLI_CONFIG", hint="Error within the config.")
 	for _ in range(count):
 		click.echo("Hi {}!".format(name))
 
@@ -31,7 +33,7 @@ def open(keywords):
 	"""Takes in unlimited <keywords>, which match to the configured
 	OPEN_FILES map.  Attempts to open each of them in their native
 	application."""
-	options = helpers.get_config("OPEN_FILES")
+	options = util.get_config("OPEN_FILES")
 	successes = 0
 	for keyword in keywords:
 		if keyword in options:
